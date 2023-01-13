@@ -1,29 +1,27 @@
 param appName string
 param location string
-param vnetSubnetId string
+param stagingSubnetId string
 param appInsightsInstrumentationKey string
 param appInsightsConnectionString string
 param storageConnectionString string
 
-resource appServicePlan 'Microsoft.Web/serverfarms@2021-03-01' = {
+resource appServicePlan 'Microsoft.Web/serverfarms@2021-03-01' existing = {
   name: '${appName}-plan'
-  location: location
-  kind: 'app'
-  sku: {
-    name: 'S1'
-    capacity: 1
-  }
 }
 
-resource appService 'Microsoft.Web/sites@2021-03-01' = {
+resource appService 'Microsoft.Web/sites@2021-03-01' existing = {
   name: appName
+}
+
+resource stagingSlot 'Microsoft.Web/sites/slots@2022-03-01' = {
+  name: '${appName}stg'
   location: location
-  kind: 'app'
+  parent: appService
   properties: {
     serverFarmId: appServicePlan.id
-    virtualNetworkSubnetId: vnetSubnetId
-    httpsOnly: true
+    virtualNetworkSubnetId: stagingSubnetId
     siteConfig: {
+      http20Enabled: true
       vnetPrivatePortsCount: 2
       webSocketsEnabled: true
       netFrameworkVersion: 'v6.0'
@@ -42,16 +40,10 @@ resource appService 'Microsoft.Web/sites@2021-03-01' = {
         }
         {
           name: 'ORLEANS_CLUSTER_ID'
-          value: 'Default'
+          value: 'Staging'
         }
       ]
       alwaysOn: true
     }
-  }
-}
-resource appServiceConfig 'Microsoft.Web/sites/config@2021-03-01' = {
-  name: '${appService.name}/metadata'
-  properties: {
-    CURRENT_STACK: 'dotnet'
   }
 }
