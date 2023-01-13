@@ -25,6 +25,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
     addressSpace: {
       addressPrefixes: [
         '172.17.0.0/16'
+        '192.168.0.0/16'
       ]
     }
     subnets: [
@@ -45,7 +46,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
       {
         name: 'staging'
         properties: {
-          addressPrefix: '172.17.0.1/24'
+          addressPrefix: '192.168.0.0/24'
           delegations: [
             {
               name: 'delegation'
