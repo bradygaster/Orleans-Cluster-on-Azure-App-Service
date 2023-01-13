@@ -44,3 +44,10 @@ jobs:
           --resource-group ${{ env.AZURE_RESOURCE_GROUP_NAME  }} \
           --clean true --restart true \
           --type zip --src-path silo.zip --debug
+
+    - name: Staging deploy
+      run: |
+        az webapp deploy --name ${{ env.UNIQUE_APP_NAME }}stg \
+          --resource-group ${{ env.AZURE_RESOURCE_GROUP_NAME  }} \
+          --clean true --restart true \
+          --type zip --src-path silo.zip --debug
