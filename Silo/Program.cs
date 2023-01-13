@@ -29,7 +29,7 @@ await Host.CreateDefaultBuilder(args)
                     .Configure<ClusterOptions>(
                         options =>
                         {
-                            options.ClusterId = "ShoppingCartCluster";
+                            options.ClusterId = context.Configuration["ORLEANS_CLUSTER_ID"];
                             options.ServiceId = nameof(ShoppingCartService);
                         }).UseAzureStorageClustering(                    
                     options => options.ConfigureTableServiceClient(connectionString));
