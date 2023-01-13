@@ -67,21 +67,9 @@ module siloModule 'app-service.bicep' = {
     appName: appName
     location: location
     vnetSubnetId: vnet.properties.subnets[0].id
-    appInsightsConnectionString: logsModule.outputs.appInsightsConnectionString
-    appInsightsInstrumentationKey: logsModule.outputs.appInsightsInstrumentationKey
-    storageConnectionString: storageModule.outputs.connectionString
-  }
-}
-
-module stagingSiloModule 'app-service-staging.bicep' = {
-  name: 'orleansSiloStagingModule'
-  params: {
-    appName: appName
-    location: location
     stagingSubnetId: vnet.properties.subnets[1].id
     appInsightsConnectionString: logsModule.outputs.appInsightsConnectionString
     appInsightsInstrumentationKey: logsModule.outputs.appInsightsInstrumentationKey
     storageConnectionString: storageModule.outputs.connectionString
   }
 }
-
