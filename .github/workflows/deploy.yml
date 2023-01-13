@@ -6,8 +6,8 @@ on:
     - deploy
 
 env:
-  UNIQUE_APP_NAME: devint22cart
-  AZURE_RESOURCE_GROUP_NAME: orleanscartrg
+  UNIQUE_APP_NAME: orcart
+  AZURE_RESOURCE_GROUP_NAME: orcart
   AZURE_RESOURCE_GROUP_LOCATION: westus
 
 jobs:
