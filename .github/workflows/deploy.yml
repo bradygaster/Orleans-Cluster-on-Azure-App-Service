@@ -6,8 +6,8 @@ on:
     - deploy
 
 env:
-  UNIQUE_APP_NAME: orcart
-  AZURE_RESOURCE_GROUP_NAME: orcart
+  UNIQUE_APP_NAME: slotstore01
+  AZURE_RESOURCE_GROUP_NAME: slotstore01
   AZURE_RESOURCE_GROUP_LOCATION: westus
 
 jobs:
