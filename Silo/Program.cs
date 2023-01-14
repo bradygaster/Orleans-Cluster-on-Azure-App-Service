@@ -31,11 +31,18 @@ await Host.CreateDefaultBuilder(args)
                         {
                             options.ClusterId = context.Configuration["ORLEANS_CLUSTER_ID"];
                             options.ServiceId = nameof(ShoppingCartService);
-                        }).UseAzureStorageClustering(                    
-                    options => options.ConfigureTableServiceClient(connectionString));
-                builder.AddAzureTableGrainStorage(
-                    "shopping-cart",                    
-                    options => options.ConfigureTableServiceClient(connectionString));
+                        })
+                    .UseAzureStorageClustering(                    
+                        options =>
+                        {
+                            options.ConfigureTableServiceClient(connectionString);
+                            options.TableName = $"{context.Configuration["ORLEANS_CLUSTER_ID"]}Clustering";
+                        })
+                    .AddAzureTableGrainStorage("shopping-cart",                    
+                        options => {
+                            options.ConfigureTableServiceClient(connectionString);
+                            options.TableName = $"{context.Configuration["ORLEANS_CLUSTER_ID"]}Persistence";
+                        });
             }
         })
     .ConfigureWebHostDefaults(
