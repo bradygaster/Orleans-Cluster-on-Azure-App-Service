@@ -84,10 +84,3 @@ resource appService 'Microsoft.Web/sites@2021-03-01' = {
     }
   }
 }
-
-resource appServiceConfig 'Microsoft.Web/sites/config@2021-03-01' = {
-  name: '${appService.name}/metadata'
-  properties: {
-    CURRENT_STACK: 'dotnet'
-  }
-}
