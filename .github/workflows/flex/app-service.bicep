@@ -84,3 +84,13 @@ resource appService 'Microsoft.Web/sites@2021-03-01' = {
     }
   }
 }
+
+resource slotConfig 'Microsoft.Web/sites/config@2021-03-01' = {
+  name: 'slotConfigNames'
+  parent: appService
+  properties: {
+    appSettingNames: [
+      'ORLEANS_CLUSTER_ID'
+    ]
+  }
+}
