@@ -6,8 +6,8 @@ on:
     - deploy
 
 env:
-  UNIQUE_APP_NAME: slotstore02
-  AZURE_RESOURCE_GROUP_NAME: slotstore02
+  UNIQUE_APP_NAME: slotstore03
+  AZURE_RESOURCE_GROUP_NAME: slotstore03
   AZURE_RESOURCE_GROUP_LOCATION: westus
 
 jobs:
