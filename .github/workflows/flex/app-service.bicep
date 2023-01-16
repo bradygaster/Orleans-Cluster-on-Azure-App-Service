@@ -86,8 +86,11 @@ resource appService 'Microsoft.Web/sites@2021-03-01' = {
 }
 
 resource appServiceConfig 'Microsoft.Web/sites/config@2021-03-01' = {
-  name: '${appService.name}/metadata'
+  name: '${appService.name}Config'
   properties: {
     CURRENT_STACK: 'dotnet'
+    appSettingNames: [
+      'ORLEANS_CLUSTER_ID'
+    ]
   }
 }
