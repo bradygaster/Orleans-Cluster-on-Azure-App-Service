@@ -89,7 +89,7 @@ resource appServiceConfig 'Microsoft.Web/sites/config@2022-03-01' = {
   name: '${appService.name}/metadata'
   properties: {
     appSettingNames: [
-      'string'
+      'ORLEANS_CLUSTER_ID'
     ]
   }
 }
