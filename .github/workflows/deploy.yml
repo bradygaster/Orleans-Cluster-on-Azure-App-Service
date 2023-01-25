@@ -6,9 +6,9 @@ on:
     - deploy
 
 env:
-  UNIQUE_APP_NAME: slotstore03
-  AZURE_RESOURCE_GROUP_NAME: slotstore03
-  AZURE_RESOURCE_GROUP_LOCATION: westus
+  UNIQUE_APP_NAME: storleanseast2
+  AZURE_RESOURCE_GROUP_NAME: storleanseast2
+  AZURE_RESOURCE_GROUP_LOCATION: eastus2
 
 jobs:
   build-and-deploy:
